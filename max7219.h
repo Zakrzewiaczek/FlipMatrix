@@ -138,6 +138,72 @@ void max7219_shift_left(MAX7219* max7219, bool wrap);
  */
 void max7219_shift_right(MAX7219* max7219, bool wrap);
 
+/**
+ * Shift display up by one row
+ * @param max7219 Pointer to MAX7219 instance
+ * @param wrap true to wrap around, false to shift in zeros
+ */
+void max7219_shift_up(MAX7219* max7219, bool wrap);
+
+/**
+ * Shift display down by one row
+ * @param max7219 Pointer to MAX7219 instance
+ * @param wrap true to wrap around, false to shift in zeros
+ */
+void max7219_shift_down(MAX7219* max7219, bool wrap);
+
+/**
+ * Display a single character on the matrix
+ * @param max7219 Pointer to MAX7219 instance
+ * @param character Character to display
+ * @param x_offset X offset (0-7, can be negative for partial display)
+ * @param y_offset Y offset (0-7)
+ */
+void max7219_display_char(MAX7219* max7219, char character, int8_t x_offset, uint8_t y_offset);
+
+/**
+ * Display text horizontally on the matrix (for left-right scrolling)
+ * @param max7219 Pointer to MAX7219 instance
+ * @param text Text to display
+ * @param x_offset X offset (can be negative for scrolling effects)
+ * @param y_offset Y offset (0-7)
+ * @param spacing Spacing between characters (default 1 pixel)
+ */
+void max7219_display_text_horizontal(MAX7219* max7219, const char* text, int16_t x_offset, uint8_t y_offset, uint8_t spacing);
+
+/**
+ * Display text vertically on the matrix (for top-bottom scrolling)
+ * @param max7219 Pointer to MAX7219 instance
+ * @param text Text to display
+ * @param x_offset X offset (0-7)
+ * @param y_offset Y offset (can be negative for scrolling effects)
+ * @param spacing Spacing between characters (default 1 pixel)
+ */
+void max7219_display_text_vertical(MAX7219* max7219, const char* text, uint8_t x_offset, int16_t y_offset, uint8_t spacing);
+
+/**
+ * Get the width of a character in pixels
+ * @param character Character to measure
+ * @return Width in pixels (0 if character not found)
+ */
+uint8_t max7219_get_char_width(char character);
+
+/**
+ * Get the total width of a text string in pixels (including spacing)
+ * @param text Text to measure
+ * @param spacing Space between characters
+ * @return Total width in pixels
+ */
+uint16_t max7219_get_text_width(const char* text, uint8_t spacing);
+
+/**
+ * Get the total height of a text string in pixels (including spacing) for vertical display
+ * @param text Text to measure
+ * @param spacing Space between characters
+ * @return Total height in pixels
+ */
+uint16_t max7219_get_text_height(const char* text, uint8_t spacing);
+
 #ifdef __cplusplus
 }
 #endif
